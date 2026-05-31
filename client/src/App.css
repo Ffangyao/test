@@ -1,0 +1,312 @@
+:root {
+  --bg: #0f1424;
+  --panel: #1a2138;
+  --panel-2: #232c4a;
+  --line: #2e3960;
+  --text: #e8ecf6;
+  --muted: #8b93b0;
+  --accent: #6c8cff;
+  --accent-2: #ffb454;
+  --good: #4ade80;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  background: radial-gradient(1200px 600px at 50% -10%, #1d2747, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+.title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 8px 0 24px;
+}
+
+.title span {
+  color: var(--accent-2);
+}
+
+/* ---- 大厅 ---- */
+.games {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.game-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.12s;
+  text-align: center;
+}
+
+.game-card:hover {
+transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.game-card .emoji {
+  font-size: 40px;
+}
+
+.game-card .name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.game-card .desc {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.join-box {
+  margin-top: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.join-box input {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 18px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+/* ---- 房间 ---- */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.code-pill {
+  background: var(--panel);
+  border: 1px solid var(--line);
+border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 15px;
+}
+
+.code-pill b {
+  color: var(--accent-2);
+  letter-spacing: 3px;
+  font-size: 18px;
+}
+
+.status {
+  text-align: center;
+  font-size: 16px;
+  margin: 10px 0 18px;
+  min-height: 24px;
+}
+
+.status .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.board-wrap {
+display: flex;
+  justify-content: center;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #c0392b;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ---- 连子棋盘(五子棋/井字棋) ---- */
+.grid-board {
+  display: grid;
+  background: #d9b06b;
+  padding: 8px;
+  border-radius: 10px;
+  gap: 1px;
+}
+
+.grid-board .cell {
+  background: #e8c483;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.stone {
+  width: 78%;
+  height: 78%;
+  border-radius: 50%;
+}
+
+.stone.s0 {
+  background: radial-gradient(circle at 35% 30%, #555, #000);
+}
+
+.stone.s1 {
+  background: radial-gradient(circle at 35% 30%, #fff, #c8c8c8);
+}
+
+.cell.last {
+  outline: 2px solid #e0533d;
+  outline-offset: -2px;
+}
+
+/* ---- 黑白棋 ---- */
+.reversi {
+  --c: min(42px, calc((100vw - 48px) / 8));
+  display: grid;
+  grid-template-columns: repeat(8, var(--c));
+background: #1f7a44;
+  padding: 6px;
+  border-radius: 10px;
+  gap: 2px;
+}
+
+.reversi .cell {
+  background: #239b54;
+  width: var(--c);
+  height: var(--c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.reversi .hint {
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ---- 象棋 ---- */
+.xq {
+  --c: min(46px, calc((100vw - 48px) / 9));
+  position: relative;
+  background: #e8c483;
+  border-radius: 10px;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(9, var(--c));
+  gap: 0;
+}
+
+.xq .pt {
+  width: var(--c);
+  height: var(--c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 格线穿过每个落点中心,棋子居中即落在交叉点上 */
+.xq .pt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(#9c7a3c, #9c7a3c) center / 1px 100% no-repeat,
+    linear-gradient(#9c7a3c, #9c7a3c) center / 100% 1px no-repeat;
+}
+
+.piece {
+  width: calc(var(--c) * 0.82);
+  height: calc(var(--c) * 0.82);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--c) * 0.48);
+  font-weight: 700;
+background: #f6e3bf;
+  border: 2px solid #7a5a2a;
+  z-index: 1;
+}
+
+.piece.red {
+  color: #c0392b;
+}
+
+.piece.black {
+  color: #1c1c1c;
+}
+
+.xq .pt.sel .piece {
+  box-shadow: 0 0 0 3px var(--accent);
+}
+
+.xq .pt.target::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(108, 140, 255, 0.7);
+  z-index: 2;
+}

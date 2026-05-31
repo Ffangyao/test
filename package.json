@@ -1,0 +1,20 @@
+{
+  "name": "duo-games",
+  "version": "1.0.0",
+  "description": "双人对战游戏网站(五子棋/象棋/井字棋/黑白棋)",
+  "scripts": {
+    "dev": "concurrently -n server,client -c green,cyan \"npm run dev:server\" \"npm run dev:client\"",
+"dev:server": "node --watch server/index.js",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client install && npm --prefix client run build",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nanoid": "^3.3.7",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+}
+}
